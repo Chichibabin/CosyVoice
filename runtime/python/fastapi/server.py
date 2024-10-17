@@ -43,7 +43,7 @@ def generate_data(model_output):
         yield tts_audio
 
 
-@app.get("/inference_sft")
+@app.post("/inference_sft")
 async def inference_sft(tts_text: str = Form(), spk_id: str = Form()):
     model_output = cosyvoice.inference_sft(tts_text, spk_id)
     return StreamingResponse(generate_data(model_output))
